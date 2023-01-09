@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/agonbekaj/git-github.com-agonbekaj-who.pays.the.bill.game.git/static/css/main.7440db6c.css",
+    "main.js": "/agonbekaj/git-github.com-agonbekaj-who.pays.the.bill.game.git/static/js/main.7962e6e5.js",
+    "index.html": "/agonbekaj/git-github.com-agonbekaj-who.pays.the.bill.game.git/index.html",
+    "main.7440db6c.css.map": "/agonbekaj/git-github.com-agonbekaj-who.pays.the.bill.game.git/static/css/main.7440db6c.css.map",
+    "main.7962e6e5.js.map": "/agonbekaj/git-github.com-agonbekaj-who.pays.the.bill.game.git/static/js/main.7962e6e5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7440db6c.css",
+    "static/js/main.7962e6e5.js"
+  ]
+}
