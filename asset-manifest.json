@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/agonbekaj/git-github.com-agonbekaj-who.pays.the.bill.game.git/static/css/main.7440db6c.css",
-    "main.js": "/agonbekaj/git-github.com-agonbekaj-who.pays.the.bill.game.git/static/js/main.7962e6e5.js",
-    "index.html": "/agonbekaj/git-github.com-agonbekaj-who.pays.the.bill.game.git/index.html",
-    "main.7440db6c.css.map": "/agonbekaj/git-github.com-agonbekaj-who.pays.the.bill.game.git/static/css/main.7440db6c.css.map",
-    "main.7962e6e5.js.map": "/agonbekaj/git-github.com-agonbekaj-who.pays.the.bill.game.git/static/js/main.7962e6e5.js.map"
+    "main.css": "/git-github.com-agonbekaj-who.pays.the.bill.game/static/css/main.8c42d3ef.css",
+    "main.js": "/git-github.com-agonbekaj-who.pays.the.bill.game/static/js/main.623d8247.js",
+    "index.html": "/git-github.com-agonbekaj-who.pays.the.bill.game/index.html",
+    "main.8c42d3ef.css.map": "/git-github.com-agonbekaj-who.pays.the.bill.game/static/css/main.8c42d3ef.css.map",
+    "main.623d8247.js.map": "/git-github.com-agonbekaj-who.pays.the.bill.game/static/js/main.623d8247.js.map"
   },
   "entrypoints": [
-    "static/css/main.7440db6c.css",
-    "static/js/main.7962e6e5.js"
+    "static/css/main.8c42d3ef.css",
+    "static/js/main.623d8247.js"
   ]
 }
