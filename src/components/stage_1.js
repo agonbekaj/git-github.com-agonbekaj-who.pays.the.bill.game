@@ -1,101 +1,80 @@
-import React, {useState, useContext, useRef } from 'react';
-import {Button,Form,Alert } from  'react-bootstrap';
-
+import React, { useState, useContext, useRef } from 'react';
 import { MyContext } from '../context';
 
-
-
 const Stage1 = () => {
-
   const textInput = useRef();
   const context = useContext(MyContext);
-  const [error,setError ] = useState([false,''])
+  const [error, setError] = useState([false, '']);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const value = textInput.current.value;
-    const validate = validateInput(value);
+    const value = textInput.current.value.trim();
+    if (validateInput(value)) {
+      setError([false, '']);
+      context.addPlayer(value);
+      textInput.current.value = '';
+      textInput.current.focus();
+    }
+  };
 
-    if(validate){
-      // form is valid...add player
-      setError([false,'']);
-      context.addPlayer(value)
-      textInput.current.value = ''
-
-    } 
-  
-  }
-  
   const validateInput = (value) => {
-    if(value === ''){
-      setError([true, 'Sorry, you need to add something'])
+    if (value === '') {
+      setError([true, 'Please enter a name']);
       return false;
     }
-    if(value.length <= 2){
-      setError([true, 'Sorry, you need 3 character at least'])
+    if (value.length < 3) {
+      setError([true, 'Name must be at least 3 characters']);
       return false;
     }
     return true;
-  
-  }
+  };
 
-  console.log(context)
-  
+  const players = context.state.players;
 
   return (
-    <>
-     <Form onSubmit={handleSubmit} className = "mt-4">
-      <Form.Group>
-        <Form.Control
-        type="text"
-        placeholder="Add player name"
-        name="player"
-        ref={textInput}
-        />
-      </Form.Group>
-        {error [0] ?
-         <Alert variant="danger">
-          {error [1]}
-      </Alert>
-      :null}
+    <div className="glass-card">
+      <form onSubmit={handleSubmit}>
+        <div className="player-input-wrapper">
+          <input
+            className="player-input"
+            type="text"
+            placeholder="Enter player name..."
+            ref={textInput}
+          />
+          <button className="btn-add" type="submit">ADD</button>
+        </div>
+        {error[0] && <div className="error-msg">⚠️ {error[1]}</div>}
+      </form>
 
-      <Button className="miami" variant="primary" type="submit">
-        Add player
-      </Button>
-      {
-        context.state.players && context.state.players.length > 0 ?
-          <>
-          <hr/>
-          <div>
-            <ul className="list=group">
-              {
-                context.state.players.map((item,idx)=>(
-                  <li key={idx} className="list-group-item d-flex 
-                  justify-content-between align-items-center 
-                  list-group-item-action">
-                    {item}
-                    <span
-                    className="badge badge-danger" 
-                    onClick={() => context.removePlayer(idx)}>x</span>
-                  </li>
-                ))
-              }
-            </ul>
-            <div
-              className="action_button"
-              onClick={()=>context.next()}
-            >
-             NEXT
-            </div>
-          </div>
-          </>
-        :null
-      }
-      
-     </Form>
-
-    </>
+      {players && players.length > 0 && (
+        <>
+          <div className="divider" />
+          <div className="player-count">{players.length} player{players.length !== 1 ? 's' : ''} added</div>
+          <ul className="players-list">
+            {players.map((item, idx) => (
+              <li key={idx} className="player-item">
+                <span className="player-name">
+                  <span className="player-avatar">{item[0].toUpperCase()}</span>
+                  {item}
+                </span>
+                <button
+                  className="remove-btn"
+                  onClick={() => context.removePlayer(idx)}
+                  type="button"
+                  aria-label="Remove player"
+                >
+                  ×
+                </button>
+              </li>
+            ))}
+          </ul>
+          <button className="btn-next" onClick={() => context.next()} type="button">
+            SPIN THE WHEEL →
+          </button>
+        </>
+      )}
+    </div>
   );
-}
+};
 
 export default Stage1;

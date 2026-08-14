@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "who-pays-the-bill",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "port": 3001,
+      "cwd": "/Users/agon/Desktop/ab/git-github.com-agonbekaj-who.pays.the.bill.game"
+    }
+  ]
+}
