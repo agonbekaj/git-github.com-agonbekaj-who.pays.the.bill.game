@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import translations from '../languages.json';
 
 const MyContext = React.createContext();
 
@@ -7,20 +8,26 @@ class MyProvider extends Component {
     state={
         stage:1,
         players:[],
-        result:''
-    
+        result:'',
+        language: localStorage.getItem('language') || 'en',
+        history: JSON.parse(localStorage.getItem('playerHistory')) || []
     }
 
 
     addPlayerHandler = (name) =>{
-
+        if(!name.trim()) return;
+        
         this.setState((prevState)=>({
             players:[
                 ...prevState.players,
                 name
             ]
-
         }))
+
+        // Add to history
+        const updatedHistory = [name, ...this.state.history.filter(h => h !== name)].slice(0, 20);
+        this.setState({ history: updatedHistory });
+        localStorage.setItem('playerHistory', JSON.stringify(updatedHistory));
     }
 
     removePlayerHandler = (idx) =>{
@@ -63,8 +70,21 @@ class MyProvider extends Component {
             players:[],
             result:''
         })
+    }
 
+    setLanguageHandler = (lang) => {
+        this.setState({ language: lang });
+        localStorage.setItem('language', lang);
+    }
 
+    clearHistoryHandler = () => {
+        this.setState({ history: [] });
+        localStorage.setItem('playerHistory', JSON.stringify([]));
+    }
+
+    translateHandler = (key) => {
+        const lang = this.state.language;
+        return translations[lang]?.[key] || translations['en']?.[key] || key;
     }
 
 
@@ -77,7 +97,10 @@ class MyProvider extends Component {
                 removePlayer: this.removePlayerHandler,
                 next: this.nextHandler,
                 getNewLooser: this.generateLooser,
-                resetGame: this.resetGame
+                resetGame: this.resetGame,
+                setLanguage: this.setLanguageHandler,
+                clearHistory: this.clearHistoryHandler,
+                t: this.translateHandler
 
             }}>
                 {this.props.children}

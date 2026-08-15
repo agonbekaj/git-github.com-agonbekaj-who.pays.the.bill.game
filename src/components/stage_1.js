@@ -19,7 +19,7 @@ const Stage1 = () => {
 
   const validateInput = (value) => {
     if (value === '') {
-      setError([true, 'Please enter a name']);
+      setError([true, context.t('placeholder')]);
       return false;
     }
     if (value.length < 3) {
@@ -38,10 +38,10 @@ const Stage1 = () => {
           <input
             className="player-input"
             type="text"
-            placeholder="Enter player name..."
+            placeholder={context.t('placeholder')}
             ref={textInput}
           />
-          <button className="btn-add" type="submit">ADD</button>
+          <button className="btn-add" type="submit">{context.t('addButton')}</button>
         </div>
         {error[0] && <div className="error-msg">⚠️ {error[1]}</div>}
       </form>
@@ -69,7 +69,7 @@ const Stage1 = () => {
             ))}
           </ul>
           <button className="btn-next" onClick={() => context.next()} type="button">
-            SPIN THE WHEEL →
+            {context.t('startButton')} →
           </button>
         </>
       )}

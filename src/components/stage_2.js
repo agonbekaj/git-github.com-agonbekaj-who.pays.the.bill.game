@@ -21,14 +21,14 @@ const Stage2 = () => {
       {!revealed ? (
         <div className="waiting-state">
           <div className="spinner" />
-          <div className="waiting-text">PICKING THE UNLUCKY ONE...</div>
+          <div className="waiting-text">{context.t('pickingWinner')}</div>
         </div>
       ) : (
         <>
-          <div className="result-label">Tonight's unlucky winner 🎲</div>
+          <div className="result-label">{context.t('nightsUnluckyWinner')}</div>
           <span className="result-emoji">😭</span>
           <div className="result-name">{context.state.result}</div>
-          <div className="result-sub">pays the bill</div>
+          <div className="result-sub">{context.t('paysTheBill')}</div>
         </>
       )}
 
@@ -38,13 +38,13 @@ const Stage2 = () => {
             className="btn-action btn-new-loser"
             onClick={() => { setRevealed(false); context.getNewLooser(); }}
           >
-            NEW LOSER
+            {context.t('newLoser')}
           </button>
           <button
             className="btn-action btn-restart"
             onClick={context.resetGame}
           >
-            START OVER
+            {context.t('startOver')}
           </button>
         </div>
       )}
